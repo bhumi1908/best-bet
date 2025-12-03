@@ -117,7 +117,7 @@ export default function Game2Page() {
 
         {/* Front-digit selector */}
         <div className="flex flex-col items-center justify-center mb-8">
-          <div className="flex flex-col gap-3 mb-4">
+          <div className="flex flex-col md:flex-row gap-3 mb-4">
             {/* Top row: 0-4 */}
             <div className="flex gap-3 justify-center">
               {Array.from({ length: 5 }, (_, i) => (
