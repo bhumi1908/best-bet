@@ -113,13 +113,13 @@ export default function Pick3Page() {
       <div className="relative z-20">
         <div className="mx-auto max-w-5xl px-4 py-10">
           {/* Header */}
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <h1 className="text-3xl font-extrabold text-white drop-shadow">NC Pick 3 Predictions</h1>
-              <span className="text-3xl font-extrabold text-white drop-shadow">Game 1</span>
+          <div className="flex items-start justify-between gap-4 flex-col md:flex-row">
+            <div className="w-full">
+              <h1 className="!text-2xl md:!text-3xl md:text-left text-center font-extrabold text-white drop-shadow">NC Pick 3 Predictions</h1>
+              <p className="!text-2xl md:t!ext-3xl md:text-left text-center font-extrabold text-white drop-shadow">Game 1</p>
             </div>
 
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-2 items-center justify-center w-full md:justify-end">
               <button
                 onClick={() => setShowHelp(true)}
                 className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-yellow-400 text-black font-bold shadow-md hover:bg-yellow-300 transition"
@@ -134,7 +134,7 @@ export default function Pick3Page() {
             </div>
           </div>
 
-          {hydrated && <p className="text-sm text-gray-200 mt-2 mb-6">Last updated: {lastUpdated}</p>}
+          {hydrated && <p className="!text-xs md:!text-sm text-gray-200 mt-2 mb-6 md:text-left text-center">Last updated: {lastUpdated}</p>}
 
           {/* DESKTOP VIEW */}
           <div className="flex flex-col md:flex-row items-start justify-between gap-6">

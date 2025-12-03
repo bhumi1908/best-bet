@@ -464,6 +464,7 @@ th {
     min-width: 100% !important;
     table-layout: auto !important;
     border-collapse: collapse !important;
+    overflow-x: auto !important;
   }
   .state-table-wrapper thead,
   .state-table-wrapper tbody,

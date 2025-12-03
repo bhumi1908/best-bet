@@ -74,17 +74,17 @@ export default function Game2Page() {
 
       <div className="relative z-20 mx-auto max-w-5xl px-4 md:px-6 py-10">
         {/* Header */}
-        <div className="flex items-start justify-between gap-4">
-          <div className="flex flex-col">
-            <h1 className="text-3xl font-extrabold text-white drop-shadow">
+        <div className="flex items-start justify-between gap-4 flex-col md:flex-row">
+          <div className="flex flex-col w-full">
+            <h1 className="!text-xl md:!text-3xl md:text-left text-center font-extrabold text-white drop-shadow">
               NC Pick 3 Predictions
             </h1>
-            <div className="mt-1 flex flex-wrap items-baseline gap-x-2">
-              <span className="text-3xl font-extrabold text-white drop-shadow">
+            <div className="mt-1 flex flex-wrap items-baseline gap-x-2 justify-center md:justify-start">
+              <span className="!text-xl md:!text-3xl md:text-left text-center font-extrabold text-white drop-shadow">
                 Game 2
               </span>
               <span
-                className="text-2xl font-bold drop-shadow"
+                className="!text-lg md:text-2xl md:text-left text-center font-bold drop-shadow"
                 style={{ color: "#4B9CD3" }} // Carolina Blue
               >
                 (Target The Front Number)
@@ -92,7 +92,7 @@ export default function Game2Page() {
             </div>
           </div>
 
-          <div className="flex gap-2 items-center">
+          <div className="flex gap-2 items-center justify-center w-full md:justify-end">
             <button
               onClick={() => setShowInstructions(true)}
               className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-yellow-400 text-black font-bold shadow-md hover:bg-yellow-300 transition"
@@ -111,7 +111,7 @@ export default function Game2Page() {
           </div>
         </div>
 
-        <p className="text-sm text-gray-200 mt-2 mb-6">
+        <p className="!text-xs md:!text-sm text-gray-200 mt-2 mb-6 md:text-left text-center">
           Last updated: {lastUpdated}
         </p>
 

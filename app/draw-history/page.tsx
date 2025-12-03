@@ -57,33 +57,35 @@ export default function DrawHistoryPage() {
   }
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen max-w-[100vw]">
       <div className="mx-auto max-w-full md:max-w-4xl pb-10 pt-6 ">
         {/* Title – bumped up ~2 sizes */}
         <h1 className="page-title mb-4 !text-2xl md:text-5xl px-4 md:px-6">Draw History</h1>
 
         {/* Filters */}
-        <div className="mb-4 flex items-center gap-3 px-4 md:px-6">
-          <button
-            className={`pill ${scope === "All" ? "active" : ""} rounded-full text-base px-4`}
-            onClick={() => setScope("All")}
-          >
-            All
-          </button>
-          <button
-            className={`pill ${scope === "Mid" ? "active" : ""} rounded-full text-base px-4`}
-            onClick={() => setScope("Mid")}
-          >
-            Mid
-          </button>
-          <button
-            className={`pill ${scope === "Eve" ? "active" : ""} rounded-full text-base px-4`}
-            onClick={() => setScope("Eve")}
-          >
-            Eve
-          </button>
+        <div className="mb-4 flex items-center gap-3 px-4 md:px-6 flex-col md:flex-row">
+          <div className="w-full flex gap-3 items-center">
+            <button
+              className={`pill ${scope === "All" ? "active" : ""} rounded-full text-base px-4`}
+              onClick={() => setScope("All")}
+            >
+              All
+            </button>
+            <button
+              className={`pill ${scope === "Mid" ? "active" : ""} rounded-full text-base px-4`}
+              onClick={() => setScope("Mid")}
+            >
+              Mid
+            </button>
+            <button
+              className={`pill ${scope === "Eve" ? "active" : ""} rounded-full text-base px-4`}
+              onClick={() => setScope("Eve")}
+            >
+              Eve
+            </button>
+          </div>
 
-          <div className="relative ml-auto">
+          <div className="relative ml-auto w-full md:w-auto md:min-w-60">
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
@@ -106,72 +108,74 @@ export default function DrawHistoryPage() {
         </div>
 
         {/* Table – black frosted pane backer */}
-        <div className="overflow-hidden rounded-2xl border border-white/15 bg-black/60 backdrop-blur-md shadow-2xl state-table-wrapper">
-          <table className="w-full text-sm">
-            <thead className="bg-white/5 text-gray-200">
-              <tr>
-                <th className="px-3 py-3 text-center text-base">#</th>
-                <th className="px-3 py-3 text-center text-base">Date</th>
-                <th className="px-3 py-3 text-center text-base">Draw</th>
-                <th className="px-3 py-3 text-center text-base">P1</th>
-                <th className="px-3 py-3 text-center text-base">P2</th>
-                <th className="px-3 py-3 text-center text-base">P3</th>
-                <th className="px-3 py-3 text-center text-base">3-Digit</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.length === 0 ? (
+        <div className="overflow-scroll md:overflow-hidden backdrop-blur-md shadow-2xl state-table-wrapper w-full">
+          <div className="rounded-2xl border border-white/15 bg-black/60 mx-4 md:mx-0 w-max md:w-full overflow-hidden">
+            <table className="text-sm">
+              <thead className="bg-white/5 text-gray-200">
                 <tr>
-                  <td
-                    colSpan={7}
-                    className="px-3 py-8 text-center text-gray-400"
-                  >
-                    No data available.
-                  </td>
+                  <th className="px-3 py-3 text-center text-base">#</th>
+                  <th className="px-3 py-3 text-center text-base">Date</th>
+                  <th className="px-3 py-3 text-center text-base">Draw</th>
+                  <th className="px-3 py-3 text-center text-base">P1</th>
+                  <th className="px-3 py-3 text-center text-base">P2</th>
+                  <th className="px-3 py-3 text-center text-base">P3</th>
+                  <th className="px-3 py-3 text-center text-base">3-Digit</th>
                 </tr>
-              ) : (
-                filtered.map((r, i) => {
-                  const three = `${r.P1}${r.P2}${r.P3}`;
-                  const isMid = r.Draw.toLowerCase() === "mid";
-                  const badge = isMid ? (
-                    <span className="badge bg-blue-600/80">MID</span>
-                  ) : (
-                    <span className="badge bg-orange-500/80">EVE</span>
-                  );
-
-                  return (
-                    <tr
-                      key={`${r.Date}-${r.Draw}-${i}`}
-                      className={i % 2 ? "bg-white/5" : "bg-transparent"}
+              </thead>
+              <tbody>
+                {filtered.length === 0 ? (
+                  <tr>
+                    <td
+                      colSpan={7}
+                      className="px-3 py-8 text-center text-gray-400"
                     >
-                      <td className="px-3 py-3 text-gray-300">{i + 1}</td>
-                      <td className="px-3 py-3 text-gray-200">{r.Date}</td>
-                      <td className="px-3 py-3">{badge}</td>
+                      No data available.
+                    </td>
+                  </tr>
+                ) : (
+                  filtered.map((r, i) => {
+                    const three = `${r.P1}${r.P2}${r.P3}`;
+                    const isMid = r.Draw.toLowerCase() === "mid";
+                    const badge = isMid ? (
+                      <span className="badge bg-blue-600/80">MID</span>
+                    ) : (
+                      <span className="badge bg-orange-500/80">EVE</span>
+                    );
 
-                      <td className="px-3 py-3">
-                        <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-black text-lg font-semibold">
-                          {r.P1}
-                        </span>
-                      </td>
-                      <td className="px-3 py-3">
-                        <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-black text-lg font-semibold">
-                          {r.P2}
-                        </span>
-                      </td>
-                      <td className="px-3 py-3">
-                        <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-black text-lg font-semibold">
-                          {r.P3}
-                        </span>
-                      </td>
-                      <td className="px-3 py-3 font-semibold text-lg">
-                        {three}
-                      </td>
-                    </tr>
-                  );
-                })
-              )}
-            </tbody>
-          </table>
+                    return (
+                      <tr
+                        key={`${r.Date}-${r.Draw}-${i}`}
+                        className={i % 2 ? "bg-white/5" : "bg-transparent"}
+                      >
+                        <td className="px-3 py-3 text-gray-300">{i + 1}</td>
+                        <td className="px-3 py-3 text-gray-200">{r.Date}</td>
+                        <td className="px-3 py-3">{badge}</td>
+
+                        <td className="px-3 py-3">
+                          <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-black text-lg font-semibold">
+                            {r.P1}
+                          </span>
+                        </td>
+                        <td className="px-3 py-3">
+                          <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-black text-lg font-semibold">
+                            {r.P2}
+                          </span>
+                        </td>
+                        <td className="px-3 py-3">
+                          <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-black text-lg font-semibold">
+                            {r.P3}
+                          </span>
+                        </td>
+                        <td className="px-3 py-3 font-semibold text-lg">
+                          {three}
+                        </td>
+                      </tr>
+                    );
+                  })
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </main>

@@ -86,7 +86,7 @@ export default function Page() {
   };
 
   return (
-    <main className="relative min-h-screen text-white flex flex-col pt-16">
+    <main className="relative min-h-screen text-white flex !flex-col-reverse pt-16">
       <div className="absolute inset-0 z-0 bg-black" />
 
       {/* GLOBAL SCROLLBAR STYLING */}
