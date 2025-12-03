@@ -158,10 +158,9 @@ export default function Page() {
                       href={`/state/${encodeURIComponent(
                         s.toLowerCase().replace(/\s+/g, "-")
                       )}`}
-                      className="inline-flex items-center justify-center rounded-full bg-yellow-500 border border-white/50 px-3 py-2 md:px-3 md:h-[24px] !text-white font-bold leading-none hover:bg-yellow-400 transition-colors text-base"
+                      className="inline-flex items-center justify-center rounded-full bg-orange-500 border border-white/50 px-2 py-2 md:px-3 md:h-[24px] !text-white font-bold leading-none hover:bg-orange-400 transition-colors text-base"
                     >
                       <span className="mr-2">North Carolina</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-6 h-6 rotate-45 block md:hidden"> <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" /> </svg>
                     </Link>
                   ) : (
                     <Link

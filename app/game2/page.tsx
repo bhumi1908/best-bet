@@ -117,19 +117,37 @@ export default function Game2Page() {
 
         {/* Front-digit selector */}
         <div className="flex flex-col items-center justify-center mb-8">
-          <div className="flex flex-wrap gap-3 mb-4">
-            {Array.from({ length: 10 }, (_, i) => (
-              <button
-                key={i}
-                onClick={() => setSelectedDigit(i)}
-                className={`w-11 h-11 text-[20px] font-extrabold rounded-full transition shadow-md ${selectedDigit === i
-                  ? "bg-yellow-400 text-black"
-                  : "bg-red-600 text-white hover:bg-red-500"
-                  }`}
-              >
-                {i}
-              </button>
-            ))}
+          <div className="flex flex-col gap-3 mb-4">
+            {/* Top row: 0-4 */}
+            <div className="flex gap-3 justify-center">
+              {Array.from({ length: 5 }, (_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setSelectedDigit(i)}
+                  className={`w-11 h-11 text-[20px] font-extrabold rounded-full transition shadow-md ${selectedDigit === i
+                    ? "bg-yellow-400 text-black"
+                    : "bg-red-600 text-white hover:bg-red-500"
+                    }`}
+                >
+                  {i}
+                </button>
+              ))}
+            </div>
+            {/* Bottom row: 5-9 */}
+            <div className="flex gap-3 justify-center">
+              {Array.from({ length: 5 }, (_, i) => (
+                <button
+                  key={i + 5}
+                  onClick={() => setSelectedDigit(i + 5)}
+                  className={`w-11 h-11 text-[20px] font-extrabold rounded-full transition shadow-md ${selectedDigit === i + 5
+                    ? "bg-yellow-400 text-black"
+                    : "bg-red-600 text-white hover:bg-red-500"
+                    }`}
+                >
+                  {i + 5}
+                </button>
+              ))}
+            </div>
           </div>
           <button
             onClick={() => setSelectedDigit(null)}
