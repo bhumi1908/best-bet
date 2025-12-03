@@ -58,12 +58,12 @@ export default function DrawHistoryPage() {
 
   return (
     <main className="min-h-screen">
-      <div className="mx-auto max-w-4xl px-6 py-10">
+      <div className="mx-auto max-w-full md:max-w-4xl pb-10 pt-6 ">
         {/* Title – bumped up ~2 sizes */}
-        <h1 className="page-title mb-4 text-4xl sm:text-5xl">Draw History</h1>
+        <h1 className="page-title mb-4 !text-2xl md:text-5xl px-4 md:px-6">Draw History</h1>
 
         {/* Filters */}
-        <div className="mb-4 flex items-center gap-3">
+        <div className="mb-4 flex items-center gap-3 px-4 md:px-6">
           <button
             className={`pill ${scope === "All" ? "active" : ""} rounded-full text-base px-4`}
             onClick={() => setScope("All")}
@@ -88,25 +88,25 @@ export default function DrawHistoryPage() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Find 3-digit (e.g. 432)"
-              className="input pl-3 pr-10 h-9"
+              className="input pl-3 pr-10 h-9 w-full text-white bg-white/10 rounded-full"
             />
             {query && (
               <button
                 aria-label="Clear search"
                 onClick={() => setQuery("")}
-                className="group absolute right-1 top-1 flex h-7 w-7 items-center justify-center"
+                className="group absolute right-1 top-1 flex h-7 w-7 items-center justify-center text-black font-bold text-lg hover:brightness-95 leading-none rounded-full"
                 title="Clear"
               >
-                <span className="ball sm bg-white text-black group-hover:brightness-95">
-                  ×
-                </span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                </svg>
               </button>
             )}
           </div>
         </div>
 
         {/* Table – black frosted pane backer */}
-        <div className="overflow-hidden rounded-2xl border border-white/15 bg-black/60 backdrop-blur-md shadow-2xl">
+        <div className="overflow-hidden rounded-2xl border border-white/15 bg-black/60 backdrop-blur-md shadow-2xl state-table-wrapper">
           <table className="w-full text-sm">
             <thead className="bg-white/5 text-gray-200">
               <tr>

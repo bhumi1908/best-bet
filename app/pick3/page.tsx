@@ -7,6 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 /** ▸▸ Game 1 Help Text (updated: removed "(left)") ◂◂ */
 const HELP_HTML = `
 <h2 class="text-xl font-semibold text-yellow-400 text-center mb-4">How to play Game 1</h2>
+<div class="max-h-[70vh] overflow-y-auto">
 <p class="text-sm text-gray-200 leading-relaxed text-center">
 Review the 3-digit predictions shown on the main panel. You can either simply play all the numbers in the list or custom pick from the list by using the “Custom Filter” tool.
 </p>
@@ -23,6 +24,7 @@ Simply take a screenshot or photo with your phone and take it to your local stor
 <p class="text-sm text-gray-200 leading-relaxed text-center mt-4">
 As you know, Pick 3 and all lottery ball games are punishing, brutal and require a lot of patience and discipline. Play consistently yet responsibly. If you don’t see it jumping out in your face, might be better to not play some draws if the numbers just don’t feel right.
 </p>
+</div>
 <div class="flex justify-center mt-6">
   <button
     id="closeHelp"
@@ -98,17 +100,18 @@ export default function Pick3Page() {
   const lastUpdated = hydrated && data?.last_updated ? formatLastUpdated(data.last_updated) : "";
 
   return (
-    <main className="relative min-h-screen text-black overflow-x-hidden">
+    <main className="relative min-h-screen text-black pt-16 overflow-x-hidden">
       {/* Background */}
-      <div className="absolute inset-0 z-0 bg-[#0b0b0b]" />
       <div
         aria-hidden
-        className="absolute inset-0 z-10 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: 'url("/Prediction%20Page%20Background%20v2.png")', opacity: 1 }}
+        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: 'url("/Prediction%20Page%20Background%20v2.png")' }}
       />
+      {/* Subtle veil to keep content readable */}
+      <div className="fixed inset-0 z-10 bg-black/25" />
 
       <div className="relative z-20">
-        <div className="mx-auto max-w-7xl px-4 py-10">
+        <div className="mx-auto max-w-5xl px-4 py-10">
           {/* Header */}
           <div className="flex items-start justify-between gap-4">
             <div>
@@ -134,10 +137,10 @@ export default function Pick3Page() {
           {hydrated && <p className="text-sm text-gray-200 mt-2 mb-6">Last updated: {lastUpdated}</p>}
 
           {/* DESKTOP VIEW */}
-          <div className="hidden md:flex items-start gap-6">
-            <section className="w-1/2 max-w-[560px] rounded-2xl border border-white/10 bg-gray-900/70 backdrop-blur-md p-5 shadow-lg">
+          <div className="flex flex-col md:flex-row items-start justify-between gap-6">
+            <section className="w-full md:w-1/2 md:max-w-[560px] rounded-2xl border border-white/10 bg-gray-900/70 backdrop-blur-md p-5 shadow-lg order-1 md:order-0">
               <h2 className="mb-3 text-lg font-semibold text-white">{shownList.length} Numbers</h2>
-              <div className="grid grid-cols-6 gap-4 justify-items-center">
+              <div className="grid grid-cols-4 md:grid-cols-6 gap-4 justify-items-center">
                 {shownList.map((n, i) => (
                   <div
                     key={`g1-desktop-${i}`}
@@ -149,10 +152,10 @@ export default function Pick3Page() {
               </div>
             </section>
 
-            <section className="W-[300px] w-[300px] rounded-2xl border border-white/10 bg-gray-900/70 backdrop-blur-md p-5 shadow-lg text-white">
-              <h2 className="text-lg font-semibold text-yellow-400 mb-3">Custom Pick</h2>
-              <p className="text-sm mb-2">Filter Main List for specific digits or pairs</p>
-              <div className="flex gap-2 mb-3">
+            <section className=" rounded-2xl border border-white/10 bg-gray-900/70 backdrop-blur-md p-5 shadow-lg text-white">
+              <h2 className="!text-[20px] font-semibold text-yellow-400 mb-3">Custom Pick</h2>
+              <p className="!text-[14px] mb-2">Filter Main List for specific digits or pairs</p>
+              <div className="flex gap-2 mb-3 w-full">
                 <input
                   type="text"
                   placeholder="e.g. 3 or 14"
@@ -167,42 +170,7 @@ export default function Pick3Page() {
               <button onClick={handleReset} className="w-full bg-gray-600 text-white text-sm font-semibold px-3 py-1 rounded hover:bg-gray-500 transition">
                 Reset
               </button>
-              <p className="text-xs text-gray-300 mt-3">Type a digit or pair above, then click Filter. Click Reset to show all again.</p>
-            </section>
-          </div>
-
-          {/* MOBILE VIEW */}
-          <div className="block md:hidden mt-8 pb-16 overflow-y-auto max-h-[95vh]">
-            <h2 className="mb-4 text-lg font-semibold text-white text-center">{shownList.length} Numbers</h2>
-            <div className="numbers-grid">
-              {shownList.map((n, i) => (
-                <div key={`g1-mobile-${i}`} className="pill">
-                  {n}
-                </div>
-              ))}
-            </div>
-
-            <section className="mt-10 mb-8 w-full rounded-2xl border border-white/10 bg-gray-900/70 backdrop-blur-md p-6 shadow-lg text-white min-h-[320px]">
-              <h2 className="text-lg font-semibold text-yellow-400 mb-3 text-center">Custom Pick</h2>
-              <p className="text-sm mb-3 text-center">Filter Main List for specific digits or pairs</p>
-              <div className="flex gap-2 mb-4">
-                <input
-                  type="text"
-                  placeholder="e.g. 3 or 14"
-                  value={filterValue}
-                  onChange={(e) => setFilterValue(e.target.value)}
-                  className="flex-1 rounded px-3 py-2 text-black text-sm focus:outline-none"
-                />
-                <button onClick={handleFilter} className="bg-yellow-400 text-black text-sm font-semibold px-4 py-2 rounded hover:bg-yellow-300">
-                  Filter
-                </button>
-              </div>
-              <button onClick={handleReset} className="w-full bg-gray-600 text-white text-sm font-semibold px-4 py-3 rounded hover:bg-gray-500 transition">
-                Reset
-              </button>
-              <p className="text-xs text-gray-300 mt-4 text-center leading-snug">
-                Type a digit or pair above, then click Filter.<br />Click Reset to show all again.
-              </p>
+              <p className="!text-[14px] text-gray-300 mt-3">Type a digit or pair above, then click Filter. Click Reset to show all again.</p>
             </section>
           </div>
         </div>
@@ -216,7 +184,7 @@ export default function Pick3Page() {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative mx-auto bg-gray-900/90 text-white rounded-2xl p-6 w-full max-w-md shadow-xl border border-yellow-400/40"
+            className="relative mx-auto bg-gray-900/90 text-white rounded-2xl p-6 w-full max-w-md shadow-xl border border-yellow-400/40 "
           >
             <div className="[&_h1]:text-yellow-400 [&_*]:select-text" dangerouslySetInnerHTML={{ __html: HELP_HTML }} />
           </div>
@@ -251,15 +219,6 @@ export default function Pick3Page() {
         }
 
         @media (max-width: 640px) {
-          .numbers-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            width: 100vw;
-            margin: 0;
-            padding: 0 8px;
-            gap: 10px;
-            justify-items: center;
-          }
           .pill {
             width: 58px;
             height: 58px;

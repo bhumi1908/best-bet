@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 /** ▸▸ Game 1 Help Text ◂◂ */
 const HELP_HTML = `
 <h2 class="text-xl font-semibold text-yellow-400 text-center mb-4">How to play Game 1</h2>
+<div class="max-h-[70vh] overflow-y-auto">
 <p class="text-sm text-gray-200 leading-relaxed text-center">
 Review the 3-digit predictions shown on the main panel. You can either simply play all the numbers in the list or custom pick from the list by using the “Custom Filter” tool.
 </p>
@@ -22,6 +23,7 @@ Simply take a screenshot or photo with your phone and take it to your local stor
 <p class="text-sm text-gray-200 leading-relaxed text-center mt-4">
 As you know, Pick 3 and all lottery ball games are punishing, brutal and require a lot of patience and discipline. Play consistently yet responsibly. If you don’t see it jumping out in your face, might be better to not play some draws if the numbers just don’t feel right.
 </p>
+</div>
 <div class="flex justify-center mt-6">
   <button
     id="closeHelp"
@@ -110,20 +112,20 @@ export default function Pick3Page() {
     hydrated && data?.last_updated ? formatLastUpdated(data.last_updated) : "";
 
   return (
-    <main className="relative min-h-screen text-black overflow-x-hidden overflow-y-auto pb-32">
+    <main className="relative min-h-screen text-black pt-16 overflow-x-hidden overflow-y-auto pb-32">
       {/* Background */}
-      <div className="absolute inset-0 z-0 bg-[#0b0b0b]" />
       <div
         aria-hidden
-        className="absolute inset-0 z-10 bg-cover bg-center bg-no-repeat"
+        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: 'url("/Prediction%20Page%20Background%20v2.png")',
-          opacity: 1,
         }}
       />
+      {/* Subtle veil to keep content readable */}
+      <div className="fixed inset-0 z-10 bg-black/25" />
 
       <div className="relative z-20">
-        <div className="mx-auto max-w-7xl px-4 py-10 flex flex-col items-center">
+        <div className="mx-auto max-w-7xl sm:px-2 md:px-4 py-10 flex flex-col items-center">
           {/* Header */}
           <div className="flex items-start justify-between w-full max-w-4xl gap-4">
             <div>
@@ -162,22 +164,22 @@ export default function Pick3Page() {
 
           {/* Last updated + count (same row) */}
           {hydrated && (
-            <div className="mt-2 mb-6 self-start flex items-baseline gap-3">
+            <div className="mt-2 mb-6 self-start max-w-4xl w-full mx-auto">
               <p className="text-sm text-gray-200">
                 Last updated: {lastUpdated}
+                <span className="text-lg font-semibold text-white ml-2">
+                  {shownList.length} Numbers
+                </span>
               </p>
-              <span className="text-lg font-semibold text-white">
-                {shownList.length} Numbers
-              </span>
             </div>
           )}
 
           {/* Main numbers panel */}
-          <section className="w-full max-w-[560px] rounded-2xl border border-white/10 bg-gray-900/70 backdrop-blur-md p-5 shadow-lg">
+          <section className="w-full max-w-[560px] rounded-2xl border border-white/10 bg-gray-900/70 backdrop-blur-md p-5 shadow-lg order-1 md:order-0 md:mt-0 mt-6 ">
             <h2 className="mb-3 text-lg font-semibold text-white text-center">
               {shownList.length} Numbers
             </h2>
-            <div className="grid grid-cols-4 gap-4 justify-items-center">
+            <div className="w-full grid grid-cols-4 gap-4 justify-items-center">
               {shownList.map((n, i) => (
                 <div
                   key={i}
@@ -190,14 +192,14 @@ export default function Pick3Page() {
           </section>
 
           {/* Custom Pick Section */}
-          <section className="mt-12 w-[340px] rounded-2xl border border-white/10 bg-gray-900/70 backdrop-blur-md p-6 shadow-lg text-white text-center">
-            <h2 className="text-lg font-semibold text-yellow-400 mb-3">
+          <section className="w-[340px] rounded-2xl border border-white/10 bg-gray-900/70 backdrop-blur-md p-6 shadow-lg text-white text-center order-0 md:order-1">
+            <h2 className="!text-[20px] font-semibold text-yellow-400 mb-3">
               Custom Pick
             </h2>
-            <p className="text-sm mb-2">
+            <p className="!text-[14px] mb-2">
               Filter Main List for specific digits or pairs
             </p>
-            <div className="flex gap-2 mb-3 justify-center">
+            <div className="flex gap-2 mb-3 justify-center w-full">
               <input
                 type="text"
                 placeholder="e.g. 3 or 14"
@@ -218,7 +220,7 @@ export default function Pick3Page() {
             >
               Reset
             </button>
-            <p className="text-xs text-gray-300 mt-3">
+            <p className="!text-[14px] text-gray-300 mt-3">
               Type a digit or pair above, then click Filter. Click Reset to
               show all again.
             </p>

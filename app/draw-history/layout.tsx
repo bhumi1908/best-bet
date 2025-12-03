@@ -9,7 +9,7 @@ export default function HistoryLayout({
       {/* Full-viewport background image for /history only */}
       <div
         aria-hidden
-        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat "
         style={{
           backgroundImage:
             'url("/Draw%20History%20Page%20Background%20v1.png")',
@@ -19,7 +19,7 @@ export default function HistoryLayout({
       <div className="fixed inset-0 z-10 bg-black/25" />
 
       {/* Page content sits above the background + veil */}
-      <div className="relative z-20">{children}</div>
+      <div className="relative z-20 pt-16">{children}</div>
     </section>
   );
 }

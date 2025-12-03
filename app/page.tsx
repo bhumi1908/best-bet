@@ -86,7 +86,7 @@ export default function Page() {
   };
 
   return (
-    <main className="relative min-h-screen text-white">
+    <main className="relative min-h-screen text-white flex flex-col pt-16">
       <div className="absolute inset-0 z-0 bg-black" />
 
       {/* GLOBAL SCROLLBAR STYLING */}
@@ -112,7 +112,7 @@ export default function Page() {
       `}</style>
 
       {/* MOBILE NAV LINKS – STACKED TEXT, NO PILLS */}
-      <div className="md:hidden text-center pt-10 pb-6 space-y-8">
+      {/* <div className="md:hidden text-center pt-10 pb-6 space-y-8">
         <Link href="/predictions" className="text-2xl font-bold">
           Predictions
         </Link>
@@ -122,16 +122,16 @@ export default function Page() {
         <Link href="/plans" className="text-2xl font-bold">
           Subscription Plans
         </Link>
-      </div>
+      </div> */}
 
       {/* DESKTOP LEFT PANELS */}
       <div
         ref={scrollContainer}
-        className="hidden md:flex fixed top-[64px] left-0 z-30 h-[calc(100vh-64px)] overflow-y-auto scroll-smooth"
+        className="flex md:fixed top-[64px] left-0 z-30 h-auto md:h-[calc(100vh-64px)] overflow-y-auto scroll-smooth flex-col md:flex-row w-full md:w-auto"
       >
         {/* Servicing (desktop) */}
-        <aside className="w-52 bg-black/45 backdrop-blur-md border-r border-white/10 flex-shrink-0">
-          <div className="px-3 py-4 border-b border-white/10">
+        <aside className="w-full md:w-52 bg-black/45 backdrop-blur-md border-r border-white/10 flex-shrink-0 ">
+          <div className="px-3 py-4 border-none md:border-b border-white/10">
             <h3 className="mb-2 text-lg font-bold text-yellow-300 text-center underline">
               Servicing
             </h3>
@@ -146,28 +146,29 @@ export default function Page() {
             </p>
           </div>
 
-          <div ref={statesList} style={{ ...gridBackground, marginTop: "-8px" }}>
-            <ul className="text-base leading-[28px] text-center">
+          <div ref={statesList} style={{ ...gridBackground, marginTop: "-8px" }} className="!bg-none px- md:!bg-[repeating-linear-gradient(to_bottom,_transparent_0,_transparent_27px,_rgba(255,255,255,0.15)_27px,_rgba(255,255,255,0.15)_28px)] md:bg-repeat md:bg-[length:100%_28px]">
+            <ul className="text-base leading-[28px] text-center bg-none flex flex-row md:flex-col flex-wrap items-center justify-center gap-2">
               {TWO_DRAW_STATES.map((s) => (
                 <li
                   key={s}
-                  className="h-[28px] flex items-center justify-center"
+                  className="h-fit md:h-[28px] flex items-center justify-center"
                 >
                   {s === "North Carolina" ? (
                     <Link
                       href={`/state/${encodeURIComponent(
                         s.toLowerCase().replace(/\s+/g, "-")
                       )}`}
-                      className="inline-flex items-center justify-center rounded-full bg-orange-500 px-3 h-[24px] text-white font-bold leading-none hover:bg-orange-400 transition-colors text-base"
+                      className="inline-flex items-center justify-center rounded-full bg-yellow-500 border border-white/50 px-3 py-2 md:px-3 md:h-[24px] !text-white font-bold leading-none hover:bg-yellow-400 transition-colors text-base"
                     >
-                      North Carolina
+                      <span className="mr-2">North Carolina</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-6 h-6 rotate-45 block md:hidden"> <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" /> </svg>
                     </Link>
                   ) : (
                     <Link
                       href={`/state/${encodeURIComponent(
                         s.toLowerCase().replace(/\s+/g, "-")
                       )}`}
-                      className="hover:text-yellow-200 transition-colors"
+                      className="hover:text-yellow-200 transition-colors !text-white border border-white/50 rounded-full px-3 py-1 md:border-none md:rounded-none md:px-0 md:py-0"
                     >
                       {s}
                     </Link>
@@ -179,8 +180,8 @@ export default function Page() {
         </aside>
 
         {/* Hit Tracker (desktop) */}
-        <aside className="w-52 bg-black/45 backdrop-blur-md border-r border-white/10 flex-shrink-0">
-          <div className="px-3 py-4 border-b border-white/10">
+        <aside className="w-full md:w-52 bg-black/45 backdrop-blur-md border-r border-white/10 flex-shrink-0  hidden md:flex flex-col ">
+          <div className="px-3 py-4 border-none md:border-b border-white/10">
             <h3 className="mb-2 text-lg font-bold text-yellow-300 text-center underline">
               Hit Tracker
             </h3>
@@ -193,7 +194,7 @@ export default function Page() {
           <div
             ref={trackerList}
             style={trackerGridBackground}
-            className="text-xs text-gray-300"
+            className="text-xs text-gray-300 "
           >
             <div className="flex text-xs text-gray-300">
               <div className="w-1/2">
@@ -213,13 +214,33 @@ export default function Page() {
             </div>
           </div>
         </aside>
+
+        {/* Mobile Hit Tracker summary */}
+        <div className="md:hidden text-center mt-10 mb-10 px-6">
+          <h3 className="mb-2 text-lg font-bold text-yellow-300 text-center underline">
+            Hit Tracker
+          </h3>
+          <p className="text-center text-sm leading-snug text-white px-1">
+            Tracking coming soon!
+          </p>
+        </div>
+
+        {/* Become a Member (mobile) – bulletproof centered & tight */}
+        <div className="md:hidden flex justify-center items-center w-screen mt-2 mb-8 px-0">
+          <Link
+            href="/plans"
+            className="inline-flex items-center justify-center px-6 py-2 rounded-full bg-yellow-400 text-black font-semibold shadow-lg hover:bg-yellow-300 hover:shadow-xl transition-all duration-150"
+          >
+            Become a Member
+          </Link>
+        </div>
       </div>
 
       {/* MAIN CONTENT */}
-      <div className="relative z-20 md:ml-[26rem] pr-6">
-        <div className="max-w-[900px] mx-auto flex flex-col items-center gap-6 mt-[30px] pb-10">
+      <div className="relative z-20 md:ml-[26rem] pr-0 md:pr-6 flex-grow flex items-center ">
+        <div className="max-w-[900px] mx-auto flex flex-col items-center gap-6 mt-[30px] pb-10 h-full">
           {/* Logo */}
-          <div className="w-full max-w-[650px]">
+          <div className="w-full max-w-full px-8 md:max-w-[650px]">
             <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl aspect-[16/10]">
               <Image
                 src="/Best Bet Logo v1 - 10-28-2025.png"
@@ -251,12 +272,12 @@ export default function Page() {
           </div>
 
           {/* Servicing heading (mobile) */}
-          <h2 className="md:hidden text-center text-yellow-300 text-2xl font-bold underline mt-4">
+          {/* <h2 className="md:hidden text-center text-yellow-300 text-2xl font-bold underline mt-4">
             Servicing
-          </h2>
+          </h2> */}
 
           {/* Servicing text (mobile) */}
-          <div className="md:hidden text-center text-white px-6 mt-3">
+          {/* <div className="md:hidden text-center text-white px-6 mt-3">
             <p className="text-base leading-snug">
               States in orange are currently being serviced,
               more states coming soon
@@ -265,10 +286,10 @@ export default function Page() {
             <p className="mt-2 text-emerald-300 font-semibold">
               Tap your state name to see performance stats.
             </p>
-          </div>
+          </div> */}
 
           {/* States list (mobile only) */}
-          <ul className="md:hidden text-center text-yellow-300 text-xl space-y-3 mt-6">
+          {/* <ul className="md:hidden text-center text-yellow-300 text-xl space-y-3 mt-6">
             {TWO_DRAW_STATES.map((s) => (
               <li key={s}>
                 {s === "North Carolina" ? (
@@ -292,27 +313,27 @@ export default function Page() {
                 )}
               </li>
             ))}
-          </ul>
+          </ul> */}
 
           {/* Mobile Hit Tracker summary */}
-          <div className="md:hidden text-center mt-10 mb-10 px-6">
+          {/* <div className="md:hidden text-center mt-10 mb-10 px-6">
             <h3 className="text-emerald-300 text-2xl font-bold mb-3">
               Hit Tracker
             </h3>
             <p className="text-gray-300 text-base leading-snug">
               Tracking coming soon!
             </p>
-          </div>
+          </div> */}
 
           {/* Become a Member (mobile) – bulletproof centered & tight */}
-          <div className="md:hidden flex justify-center items-center w-screen mt-2 mb-8 px-0">
+          {/* <div className="md:hidden flex justify-center items-center w-screen mt-2 mb-8 px-0">
             <Link
               href="/plans"
               className="inline-flex items-center justify-center px-6 py-2 rounded-full bg-yellow-400 text-black font-semibold shadow-lg hover:bg-yellow-300 hover:shadow-xl transition-all duration-150"
             >
               Become a Member
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </main>

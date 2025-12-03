@@ -45,7 +45,11 @@ img, video {
 
 /* Prevent horizontal scrollbars globally */
 html, body {
-  overflow-x: hidden;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 /* Button contrast improvements */
@@ -89,14 +93,13 @@ th {
   header, main, footer {
     width: 100% !important;
     margin: 0 auto !important;
-    padding: 0 10px !important;
   }
 
   /* Stack the left/right panels */
-  .grid, .flex, .columns {
+  /* .grid, .flex, .columns {
     display: block !important;
     width: 100% !important;
-  }
+  } */
 
   /* Make large tables scroll instead of overflowing */
   table {
@@ -154,7 +157,6 @@ th {
 
   body {
     background-color: #000;
-    overflow-x: hidden;
   }
 
   header, footer {
@@ -446,5 +448,31 @@ th {
   .custom-pick-panel button {
     width: 100% !important;
     font-size: 1rem !important;
+  }
+}
+/* --- STATE PAGE TABLE FIX: Prevent mobile shrinking --- */
+@media (max-width: 768px) {
+  .state-table-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+  }
+  .state-table-wrapper table {
+    display: table !important;
+    font-size: 0.875rem !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    table-layout: auto !important;
+    border-collapse: collapse !important;
+  }
+  .state-table-wrapper thead,
+  .state-table-wrapper tbody,
+  .state-table-wrapper tr {
+    width: 100% !important;
+  }
+  .state-table-wrapper th,
+  .state-table-wrapper td {
+    padding: 0.75rem 1rem !important;
+    box-sizing: border-box !important;
   }
 }

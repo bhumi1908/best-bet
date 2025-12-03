@@ -16,7 +16,9 @@ export default function RootLayout({
     <html lang="en">
       <body className="min-h-screen bg-black text-white antialiased">
         <Header />
-        {children}
+        <div className="h-full overflow-auto">
+          {children}
+        </div>
       </body>
     </html>
   );

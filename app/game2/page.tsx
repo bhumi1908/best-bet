@@ -60,18 +60,19 @@ export default function Game2Page() {
   const lastUpdated = formatLastUpdated(data?.last_updated);
 
   return (
-    <main className="relative min-h-screen text-black">
+    <main className="relative min-h-screen text-black pt-16">
       {/* Background */}
       <div
         aria-hidden
-        className="absolute inset-0 z-10 bg-cover bg-center bg-no-repeat"
+        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: 'url("/Prediction%20Page%20Background%20v2.png")',
-          opacity: 1,
         }}
       />
+      {/* Subtle veil to keep content readable */}
+      <div className="fixed inset-0 z-10 bg-black/25" />
 
-      <div className="relative z-20 mx-auto max-w-7xl px-4 py-10">
+      <div className="relative z-20 mx-auto max-w-5xl px-4 md:px-6 py-10">
         {/* Header */}
         <div className="flex items-start justify-between gap-4">
           <div className="flex flex-col">
@@ -91,7 +92,7 @@ export default function Game2Page() {
             </div>
           </div>
 
-        <div className="flex gap-2 items-center">
+          <div className="flex gap-2 items-center">
             <button
               onClick={() => setShowInstructions(true)}
               className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-yellow-400 text-black font-bold shadow-md hover:bg-yellow-300 transition"
@@ -103,7 +104,7 @@ export default function Game2Page() {
 
             <Link
               href="/pick3"
-              className="animated-color-pill text-black font-semibold shadow-md"
+              className="animated-color-pill text-black font-semibold shadow-md min-w-[120px] px-3"
             >
               Go to Game 1
             </Link>
@@ -115,36 +116,37 @@ export default function Game2Page() {
         </p>
 
         {/* Front-digit selector */}
-        <div className="flex flex-wrap justify-center gap-3 mb-8">
-          {Array.from({ length: 10 }, (_, i) => (
-            <button
-              key={i}
-              onClick={() => setSelectedDigit(i)}
-              className={`w-11 h-11 text-[20px] font-extrabold rounded-full transition shadow-md ${
-                selectedDigit === i
+        <div className="flex flex-col items-center justify-center mb-8">
+          <div className="flex flex-wrap gap-3 mb-4">
+            {Array.from({ length: 10 }, (_, i) => (
+              <button
+                key={i}
+                onClick={() => setSelectedDigit(i)}
+                className={`w-11 h-11 text-[20px] font-extrabold rounded-full transition shadow-md ${selectedDigit === i
                   ? "bg-yellow-400 text-black"
                   : "bg-red-600 text-white hover:bg-red-500"
-              }`}
-            >
-              {i}
-            </button>
-          ))}
+                  }`}
+              >
+                {i}
+              </button>
+            ))}
+          </div>
           <button
             onClick={() => setSelectedDigit(null)}
-            className="ml-4 px-3 py-1 rounded-full bg-gray-700 text-white text-sm hover:bg-gray-600"
+            className="w-fit px-4 h-11 py-1 rounded-full bg-gray-700 text-white text-sm hover:bg-gray-600"
           >
             Reset
           </button>
         </div>
 
         {/* Predictions Panel — aligned & packed tighter */}
-        <section className="rounded-2xl border border-white/10 bg-gray-900/70 backdrop-blur-md p-5 shadow-lg w-[440px] mx-auto relative left-[-20px]">
-          <h2 className="mb-3 text-lg font-semibold text-white">
+        <section className="rounded-2xl border border-white/10 bg-gray-900/70 backdrop-blur-md p-5 shadow-lg w-full max-w-[560px] mx-auto relative ">
+          <h2 className="mb-3 text-lg font-semibold text-white text-center">
             {transformed.length} Numbers
           </h2>
 
           {/* Tight layout: flex-wrap with very small gaps */}
-          <div className="flex flex-wrap gap-1.5">
+          <div className="w-full grid grid-cols-4 gap-4 justify-items-center">
             {transformed.map((n, i) => (
               <div
                 key={`g2-${i}`}
@@ -171,7 +173,7 @@ export default function Game2Page() {
               Instructions
             </h2>
 
-            <div className="text-[17px] leading-relaxed space-y-4 text-gray-200">
+            <div className="text-[17px] leading-relaxed space-y-4 text-gray-200 max-h-[60vh] overflow-y-auto">
               <p>
                 <strong>How to play Game 2:</strong> This is a fun little game
                 where, if you have a personal system you use and are pretty good

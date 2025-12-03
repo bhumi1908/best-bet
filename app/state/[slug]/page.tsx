@@ -12,7 +12,7 @@ export default function StatePage({ params }: { params: { slug: string } }) {
   return (
     <main className="min-h-screen bg-black text-white px-6 py-10">
       {/* BACK LINK */}
-      <div className="mb-6">
+      <div className="mb-6 w-full">
         <Link href="/" className="text-gray-300 hover:text-white text-sm">
           ← Back to Home
         </Link>
@@ -31,23 +31,23 @@ export default function StatePage({ params }: { params: { slug: string } }) {
       </p>
 
       {/* SUMMARY CARDS */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-12">
         {/* WEEK */}
-        <div className="rounded-2xl bg-black/40 border border-white/10 p-6">
+        <div className="rounded-2xl bg-black/40 border border-[#e5e7eb99] p-6">
           <p className="text-gray-300 text-sm mb-1">This Week (Sample)</p>
           <p className="text-3xl font-bold text-emerald-400 mb-1">4/14</p>
           <p className="text-gray-400 text-sm">Hit rate ~ 28.5%</p>
         </div>
 
         {/* MONTH */}
-        <div className="rounded-2xl bg-black/40 border border-white/10 p-6">
+        <div className="rounded-2xl bg-black/40 border border-[#e5e7eb99] p-6">
           <p className="text-gray-300 text-sm mb-1">This Month (Sample)</p>
           <p className="text-3xl font-bold text-emerald-400 mb-1">32/60</p>
           <p className="text-gray-400 text-sm">Hit rate ~ 53.3%</p>
         </div>
 
         {/* YEAR */}
-        <div className="rounded-2xl bg-black/40 border border-white/10 p-6">
+        <div className="rounded-2xl bg-black/40 border border-[#e5e7eb99] p-6">
           <p className="text-gray-300 text-sm mb-1">Year 2025 (Sample)</p>
           <p className="text-3xl font-bold text-emerald-400 mb-1">265/720</p>
           <p className="text-gray-400 text-sm">Hit rate ~ 36.8%</p>
@@ -59,11 +59,11 @@ export default function StatePage({ params }: { params: { slug: string } }) {
         Weekly Performance (Sample)
       </h2>
 
-      <div className="overflow-hidden rounded-xl border border-white/10 mb-12">
+      <div className="state-table-wrapper overflow-hidden rounded-xl border border-white/10 mb-12">
         <table className="w-full text-sm">
           <thead className="bg-[#1c2530] text-yellow-200">
             <tr>
-              <th className="px-4 py-3 text-left">Week</th>
+              <th className="px-4 py-3 text-center">Week</th>
               <th className="px-4 py-3 text-center">Hits</th>
               <th className="px-4 py-3 text-center">Total Plays</th>
               <th className="px-4 py-3 text-center">Hit %</th>
@@ -94,11 +94,11 @@ export default function StatePage({ params }: { params: { slug: string } }) {
         Monthly Performance (Sample)
       </h2>
 
-      <div className="overflow-hidden rounded-xl border border-white/10 mb-12">
+      <div className="state-table-wrapper overflow-hidden rounded-xl border border-white/10 mb-12">
         <table className="w-full text-sm">
           <thead className="bg-[#1c2530] text-yellow-200">
             <tr>
-              <th className="px-4 py-3 text-left">Month</th>
+              <th className="px-4 py-3 text-center">Month</th>
               <th className="px-4 py-3 text-center">Hits</th>
               <th className="px-4 py-3 text-center">Total Plays</th>
               <th className="px-4 py-3 text-center">Hit %</th>
@@ -128,11 +128,11 @@ export default function StatePage({ params }: { params: { slug: string } }) {
         Yearly Performance (Sample)
       </h2>
 
-      <div className="overflow-hidden rounded-xl border border-white/10 mb-20">
+      <div className="state-table-wrapper overflow-hidden rounded-xl border border-white/10 mb-20">
         <table className="w-full text-sm">
           <thead className="bg-[#1c2530] text-yellow-200">
             <tr>
-              <th className="px-4 py-3 text-left">Year</th>
+              <th className="px-4 py-3 text-center">Year</th>
               <th className="px-4 py-3 text-center">Hits</th>
               <th className="px-4 py-3 text-center">Total Plays</th>
               <th className="px-4 py-3 text-center">Hit %</th>
