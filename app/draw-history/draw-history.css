@@ -1,0 +1,38 @@
+/* Draw History Page Specific Styles */
+
+/* Pill button styles - mobile responsive fix */
+@media (max-width: 768px) {
+  .pill {
+    padding: 10px 16px !important;
+    font-size: 1.05em !important;
+  }
+}
+
+/* State table wrapper - prevent mobile shrinking */
+@media (max-width: 768px) {
+  .state-table-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+  }
+  .state-table-wrapper table {
+    display: table !important;
+    font-size: 0.875rem !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    table-layout: auto !important;
+    border-collapse: collapse !important;
+    overflow-x: auto !important;
+  }
+  .state-table-wrapper thead,
+  .state-table-wrapper tbody,
+  .state-table-wrapper tr {
+    width: 100% !important;
+  }
+  .state-table-wrapper th,
+  .state-table-wrapper td {
+    padding: 0.75rem 1rem !important;
+    box-sizing: border-box !important;
+  }
+}
+

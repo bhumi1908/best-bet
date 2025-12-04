@@ -1,6 +1,7 @@
 // app/pick3/page.tsx
 "use client";
 
+import "./pick3.css";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
@@ -191,49 +192,6 @@ export default function Pick3Page() {
         </div>
       )}
 
-      {/* Styles */}
-      <style jsx global>{`
-        @keyframes colorMorph {
-          0% { background-color: #ffffff; }
-          25% { background-color: #38bdf8; }
-          50% { background-color: #9333ea; }
-          75% { background-color: #10b981; }
-          100% { background-color: #ffffff; }
-        }
-        .animated-color-pill {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          padding: 0.25rem 1rem;
-          border-radius: 9999px;
-          font-size: 0.875rem;
-          font-weight: 600;
-          color: #000;
-          animation: colorMorph 6s ease-in-out infinite;
-          box-shadow: 0 2px 5px rgba(0,0,0,0.25);
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .animated-color-pill:hover {
-          transform: scale(1.08);
-          box-shadow: 0 4px 12px rgba(255,255,255,0.3);
-        }
-
-        @media (max-width: 640px) {
-          .pill {
-            width: 58px;
-            height: 58px;
-            background: white;
-            color: black;
-            border-radius: 50%;
-            font-weight: 700;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-          }
-        }
-      `}</style>
     </main>
   );
 }

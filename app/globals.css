@@ -115,10 +115,12 @@ th {
   }
 
   /* Make buttons & pills easier to tap */
-  button, .btn, .pill {
+  /* Note: .pill styles moved to app/draw-history/draw-history.css */
+  button, .btn {
     padding: 10px 16px !important;
     font-size: 1.05em !important;
   }
+  /* .pill moved to app/draw-history/draw-history.css */
 
   /* Center main content */
   .main-content {
@@ -451,7 +453,8 @@ th {
   }
 }
 /* --- STATE PAGE TABLE FIX: Prevent mobile shrinking --- */
-@media (max-width: 768px) {
+/* MOVED TO: app/draw-history/draw-history.css and app/state/[slug]/state-page.css */
+/* @media (max-width: 768px) {
   .state-table-wrapper {
     width: 100% !important;
     max-width: 100% !important;
@@ -476,4 +479,4 @@ th {
     padding: 0.75rem 1rem !important;
     box-sizing: border-box !important;
   }
-}
+} */

@@ -1,4 +1,6 @@
 // app/history/layout.tsx
+import "./draw-history.css";
+
 export default function HistoryLayout({
   children,
 }: {

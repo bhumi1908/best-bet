@@ -1,6 +1,7 @@
 // app/state/[slug]/page.tsx
 "use client";
 
+import "./state-page.css";
 import Link from "next/link";
 
 export default function StatePage({ params }: { params: { slug: string } }) {
