@@ -150,12 +150,6 @@ export default function Game2Page() {
               ))}
             </div>
           </div>
-          <button
-            onClick={() => setSelectedDigit(null)}
-            className="w-fit px-4 h-11 py-1 rounded-full bg-gray-700 text-white text-sm hover:bg-gray-600"
-          >
-            Reset
-          </button>
         </div>
 
         {/* Predictions Panel — aligned & packed tighter */}
@@ -189,7 +183,7 @@ export default function Game2Page() {
             className="max-w-3xl w-[90%] rounded-2xl bg-gray-900/90 text-white p-8 shadow-2xl border border-white/10 animate-fadeIn"
           >
             <h2 className="text-xl font-bold text-yellow-400 mb-4 text-center">
-              Instructions
+              How to play Game 2
             </h2>
 
             <div className="text-[17px] leading-relaxed space-y-4 text-gray-200 max-h-[60vh] overflow-y-auto">
